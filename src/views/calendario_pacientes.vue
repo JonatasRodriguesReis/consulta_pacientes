@@ -35,13 +35,14 @@
                 </v-container>
             </template>
 
-            <!-- <template>
+             <!--<template>
                 <v-layout row wrap>
                     <v-container>
                         <div>
                             <v-date-picker
                                     v-model="date"
                                     :locale="pt-br"
+                                    :allowed-dates="allowedDates"
                                     class="mt-3"
                                     min="2019-05-01"
                                     max="2050-12-31"
@@ -50,7 +51,7 @@
                     </v-container>
                 </v-layout>
                 {{date}}
-            </template> -->
+            </template>-->
 
             <template>
                 <v-container fluid grid-list-xl>
@@ -168,6 +169,7 @@
                 { text: '16:45'},
                 { text: '17:00'}
             ],
+            datas: [ "2019-05-13", "2019-05-14", "2019-05-15", "2019-05-16", "2019-05-17", "2019-05-18" ],
             medicos: '',
             medicosOptions: [
                 /*{ text: 'Ana Tereza de A. Vasques'},
@@ -224,7 +226,12 @@
             },
 
             especialidade: function(value){
-               this.medicosOptions = this.$store.getters.get_MedicosbyEspecialidade(value)
+                this.medicosOptions = this.$store.getters.get_MedicosbyEspecialidade(value)
+                return value
+            },
+            medicos: function(value){
+                //this.medicosOptions = this.$store.getters.get_MedicosbyEspecialidade(value)
+                this.$store.getters.get_Datas({especialidade: this.especialidade,medico: value})
             }
         },
 
@@ -240,7 +247,12 @@
                 }, 500)
             },
 
-            allowedDates: val => parseInt(val.split('-')[2], 10) % 2 === 0
+            allowedDates (val) {
+                if(this.datas.indexOf(val) != -1){
+                    return true
+                }
+                return false
+            }
         }
     }
 </script>

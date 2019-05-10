@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import * as firebase from 'firebase'
-import { stat } from 'fs';
+//import { stat } from 'fs';
 import VuexPersistence from 'vuex-persist'
 
 
@@ -44,7 +44,7 @@ export const store = new Vuex.Store({
   getters:{
     get_especialidades(state){
       var especialidades = []
-      especialidades.ind
+      //especialidades.ind
       state.medicos.forEach(element => {
         for (const key in element.especialidades) {
           especialidades.push({text: key})
@@ -68,6 +68,39 @@ export const store = new Vuex.Store({
       });
 
       return nome_medicos;
+    },
+    get_Datas: (state) => (args) => {
+       var datas = []
+
+       console.log(args.medico)
+
+       state.medicos.forEach(element => {
+
+        if( element.nome == args.medico ){
+          for (const key in element.especialidades) {
+            if(key == args.especialidade){
+              console.log('hjg')
+              for(const key2 in element.especialidades[key].consultas){
+                console.log(element.especialidades[key].consultas[key2])
+              }
+
+            }
+          }
+        }
+
+        /*var tem = false
+        for (const key in element.especialidades) {
+          if(key == especialidade){
+            tem = true
+            break;
+          }
+        }
+        if(tem){
+          nome_medicos.push(element.nome)
+        }*/
+      });
+
+      return datas;
     }
   }
 })
