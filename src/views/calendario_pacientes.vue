@@ -118,7 +118,7 @@
         },
         data: () => ({
             date: '',
-            dates: [],
+            datas: [],
             alert: false,
             menu: false,
             times: '',
@@ -228,8 +228,7 @@
                return value
             },
             medicos: function(value){
-                this.dates = this.$store.getters.get_Datas({especialidade: this.especialidade,medico:value})
-                console.log(this.dates)
+                this.datas = this.$store.getters.get_Datas({especialidade: this.especialidade,medico:value})
             },
 
             
@@ -248,7 +247,7 @@
             },
 
             allowedDates (val){
-               if(this.dates.indexOf(val) != -1){
+               if(this.datas.indexOf(val) != -1){
                    return true
                }
                return false
