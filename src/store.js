@@ -68,6 +68,24 @@ export const store = new Vuex.Store({
       });
 
       return nome_medicos;
-    }
+    },
+
+    get_Datas: (state) => (args) => {
+      var datas = []
+      console.log(args.medico)
+      state.medicos.forEach( element => {
+        if(element.nome == args.medico){
+          for(const key in element.especialidades){
+            if(key == args.especialidade){
+              for(const key2 in element.especialidades[key].consultas){
+                datas.push(element.especialidades[key].consultas[key2].data_inicial.split('T')[0])
+              }
+            }
+          }
+        }
+      })
+
+      return datas
+    } 
   }
 })

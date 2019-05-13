@@ -35,13 +35,14 @@
                 </v-container>
             </template>
 
-            <!-- <template>
+            <template>
                 <v-layout row wrap>
                     <v-container>
                         <div>
                             <v-date-picker
                                     v-model="date"
                                     :locale="pt-br"
+                                    :allowed-dates="allowedDates"
                                     class="mt-3"
                                     min="2019-05-01"
                                     max="2050-12-31"
@@ -50,7 +51,7 @@
                     </v-container>
                 </v-layout>
                 {{date}}
-            </template> -->
+            </template>
 
             <template>
                 <v-container fluid grid-list-xl>
@@ -222,10 +223,16 @@
             search (val) {
                 val && val !== this.select && this.querySelections(val)
             },
-
             especialidade: function(value){
                this.medicosOptions = this.$store.getters.get_MedicosbyEspecialidade(value)
-            }
+               return value
+            },
+            medicos: function(value){
+                this.dates = this.$store.getters.get_Datas({especialidade: this.especialidade,medico:value})
+                console.log(this.dates)
+            },
+
+            
         },
 
         methods: {
@@ -240,7 +247,12 @@
                 }, 500)
             },
 
-            allowedDates: val => parseInt(val.split('-')[2], 10) % 2 === 0
+            allowedDates (val){
+               if(this.dates.indexOf(val) != -1){
+                   return true
+               }
+               return false
+            }
         }
     }
 </script>
