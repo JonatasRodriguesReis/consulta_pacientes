@@ -164,6 +164,7 @@ export const store = new Vuex.Store({
       });
       return nome_medicos;
     },
+<<<<<<< HEAD
     get_CRM: (state) => (args) => {
       var crm = ''
       state.medicos.forEach(element => {
@@ -181,6 +182,8 @@ export const store = new Vuex.Store({
       });
       return crm;
     },
+=======
+>>>>>>> b0c16445b0a57649d89d4a3fe01acd93e272415e
 
     get_Datas: (state) => (args) => {
       var datas = []
@@ -196,6 +199,7 @@ export const store = new Vuex.Store({
           }
         }
       })
+<<<<<<< HEAD
       return datas
     },
     get_Horas: (state) => (args) => {
@@ -236,5 +240,10 @@ export const store = new Vuex.Store({
       })
       return path
     }
+=======
+
+      return datas
+    } 
+>>>>>>> b0c16445b0a57649d89d4a3fe01acd93e272415e
   }
 })

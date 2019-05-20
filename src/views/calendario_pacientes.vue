@@ -35,7 +35,11 @@
                 </v-container>
             </template>
 
+<<<<<<< HEAD
              <!--<template>
+=======
+            <template>
+>>>>>>> b0c16445b0a57649d89d4a3fe01acd93e272415e
                 <v-layout row wrap>
                     <v-container>
                         <div>
@@ -51,7 +55,11 @@
                     </v-container>
                 </v-layout>
                 {{date}}
+<<<<<<< HEAD
             </template>-->
+=======
+            </template>
+>>>>>>> b0c16445b0a57649d89d4a3fe01acd93e272415e
 
             <template>
                 <v-container fluid grid-list-xl>
@@ -118,7 +126,7 @@
         },
         data: () => ({
             date: '',
-            dates: [],
+            datas: [],
             alert: false,
             menu: false,
             times: '',
@@ -224,8 +232,8 @@
             search (val) {
                 val && val !== this.select && this.querySelections(val)
             },
-
             especialidade: function(value){
+<<<<<<< HEAD
                 this.medicosOptions = this.$store.getters.get_MedicosbyEspecialidade(value)
                 return value
             },
@@ -233,6 +241,16 @@
                 //this.medicosOptions = this.$store.getters.get_MedicosbyEspecialidade(value)
                 this.$store.getters.get_Datas({especialidade: this.especialidade,medico: value})
             }
+=======
+               this.medicosOptions = this.$store.getters.get_MedicosbyEspecialidade(value)
+               return value
+            },
+            medicos: function(value){
+                this.datas = this.$store.getters.get_Datas({especialidade: this.especialidade,medico:value})
+            },
+
+            
+>>>>>>> b0c16445b0a57649d89d4a3fe01acd93e272415e
         },
 
         methods: {
@@ -247,11 +265,19 @@
                 }, 500)
             },
 
+<<<<<<< HEAD
             allowedDates (val) {
                 if(this.datas.indexOf(val) != -1){
                     return true
                 }
                 return false
+=======
+            allowedDates (val){
+               if(this.datas.indexOf(val) != -1){
+                   return true
+               }
+               return false
+>>>>>>> b0c16445b0a57649d89d4a3fe01acd93e272415e
             }
         }
     }
